@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keshav Gupta | 3D Web Architect & Full Stack Developer</title>
+  <meta name="description" content="Award-winning 3D Space & Black Hole developer portfolio showcasing WebGL, Full Stack Engineering, interactive space 3D animations, and futuristic UI design.">
+  <meta name="keywords" content="Keshav Gupta, Developer Portfolio, 3D WebGL, Three.js, React, Full Stack, Sci-Fi UI, Black Hole Theme, Web Engineer">
+  <meta name="author" content="Keshav Gupta">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:title" content="Keshav Gupta | 3D Black Hole Space Portfolio">
+  <meta property="og:description" content="Award-winning 3D space developer portfolio with WebGL interactive Black Hole singularity, custom GitHub hub, and futuristic glassmorphism UI.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Spline Viewer Module (Stable Version) -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.72/build/spline-viewer.js"></script>
+
+  <script type="module" crossorigin src="/assets/index-D4zJbmyR.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-6pmwQsWI.css">
+</head>
+<body>
+
+  <!-- Custom Cursor Glow -->
+  <div id="cursor-glow"></div>
+  <div id="cursor-dot"></div>
+
+  <!-- Ambient Sound Toggle HUD -->
+  <div id="sound-control" class="sound-control-btn" title="Toggle Sci-Fi SFX Audio">
+    <i class="fa-solid fa-volume-xmark" id="sound-icon"></i>
+    <span class="sound-text">SFX OFF</span>
+  </div>
+
+  <!-- Futuristic Preloader Screen -->
+  <div id="preloader">
+    <div class="reactor-container">
+      <div class="reactor-ring ring-1"></div>
+      <div class="reactor-ring ring-2"></div>
+      <div class="reactor-ring ring-3"></div>
+      <div class="reactor-core">
+        <i class="fa-solid fa-atom"></i>
+      </div>
+    </div>
+    <div class="loader-text">INITIALIZING BLACK HOLE SINGULARITY...</div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="loader-progress"></div>
+    </div>
+    <div class="percentage" id="loader-percent">0%</div>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- Sticky Glass Navbar -->
+  <header id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>KESHAV<span class="logo-accent"> / GUPTA</span><span class="logo-bracket">&gt;</span>
+      </a>
+
+      <div class="nav-menu" id="nav-menu">
+        <a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="#about" class="nav-link"><i class="fa-solid fa-user-astronaut"></i> About</a>
+        <a href="#skills" class="nav-link"><i class="fa-solid fa-microchip"></i> Skills</a>
+        <a href="#experience" class="nav-link"><i class="fa-solid fa-timeline"></i> Experience</a>
+        <a href="#projects" class="nav-link"><i class="fa-solid fa-rocket"></i> Projects</a>
+        <a href="#github" class="nav-link"><i class="fa-brands fa-github"></i> GitHub</a>
+        <a href="#certifications" class="nav-link"><i class="fa-solid fa-certificate"></i> Certs</a>
+        <a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button id="nav-resume-btn" class="btn-neon btn-sm nav-cta">
+          <i class="fa-solid fa-download"></i> Resume
+        </button>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- 3D Black Hole WebGL Background Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span> OPEN FOR GLOBAL ROLES &amp; FREELANCE
+          </div>
+
+          <h1 class="hero-title">
+            GREETINGS, I AM <br>
+            <span class="text-gradient-cyan">KESHAV GUPTA</span>
+          </h1>
+
+          <div class="typing-container">
+            <span class="typing-prefix">I BUILD </span>
+            <span id="typing-text" class="text-gradient-purple"></span>
+            <span class="typing-cursor">|</span>
+          </div>
+
+          <p class="hero-description">
+            Passionate Creative Technologist &amp; Senior Full Stack Architect crafting high-performance WebGL 3D experiences, scalable cloud backends, and futuristic black hole space interfaces.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn-neon btn-primary">
+              <i class="fa-solid fa-rocket"></i> Explore Projects
+            </a>
+            <a href="#contact" class="btn-neon btn-secondary">
+              <i class="fa-solid fa-headset"></i> Contact Me
+            </a>
+            <button id="hero-resume-btn" class="btn-neon btn-outline">
+              <i class="fa-solid fa-file-arrow-down"></i> Resume
+            </button>
+          </div>
+
+          <!-- Hero HUD Quick Stats -->
+          <div class="hero-hud-stats">
+            <div class="hud-stat-item">
+              <span class="hud-num">1+</span>
+              <span class="hud-label">Years Exp.</span>
+            </div>
+            <div class="hud-divider"></div>
+            <div class="hud-stat-item">
+              <span class="hud-num">50+</span>
+              <span class="hud-label">Projects</span>
+            </div>
+            <div class="hud-divider"></div>
+            <div class="hud-stat-item">
+              <span class="hud-num">60</span>
+              <span class="hud-label">FPS 3D Core</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-interactive-badge" id="hero-3d-hint">
+          <div class="badge-ring"></div>
+          <i class="fa-solid fa-circle-dot"></i>
+          <span>Orbit Black Hole Canvas</span>
+        </div>
+      </div>
+
+      <a href="#about" class="scroll-down-indicator" aria-label="Scroll Down">
+        <span class="mouse-icon"><span class="mouse-wheel"></span></span>
+        <span class="scroll-text">ORBIT DOWN</span>
+      </a>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-padding">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag"><i class="fa-solid fa-user-astronaut"></i> BIOGRAPHY &amp; INTEL</span>
+          <h2 class="section-title">ABOUT <span class="text-gradient-purple">MY MISSION</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="about-grid">
+          <!-- Glass Profile Avatar Card -->
+          <div class="glass-card about-profile-card tilt-element">
+            <div class="profile-img-wrap">
+              <img src="/assets/profile_avatar.jpg" alt="Keshav Gupta Profile" class="profile-img">
+              <div class="profile-glow-ring"></div>
+              <div class="status-indicator">
+                <span class="dot"></span> Online in Orbit
+              </div>
+            </div>
+            <div class="profile-info">
+              <h3>Keshav Gupta</h3>
+              <p class="role-subtitle">3D Web Architect &amp; Lead Systems Engineer</p>
+              <div class="profile-socials">
+                <a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/keshav-gupta-310847306/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="mailto:keshavg408@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Glass Info Container -->
+          <div class="about-info-wrap">
+            <div class="glass-card about-text-card">
+              <h3 class="card-subtitle"><i class="fa-solid fa-compass"></i> Career Objective</h3>
+              <p>
+                To bridge the gap between complex software engineering and immersive 3D web graphics. I specialize in designing scalable web platforms, real-time WebGL canvas graphics, microservices, and AI-driven interactive tools.
+              </p>
+            </div>
+
+            <!-- Quick Facts Grid -->
+            <div class="quick-facts-grid">
+              <div class="glass-card fact-card">
+                <i class="fa-solid fa-location-dot fact-icon text-cyan"></i>
+                <div class="fact-content">
+                  <span class="fact-title">Location</span>
+                  <span class="fact-val">Jhansi, UP, India</span>
+                </div>
+              </div>
+
+              <div class="glass-card fact-card">
+                <i class="fa-solid fa-graduation-cap fact-icon text-purple"></i>
+                <div class="fact-content">
+                  <span class="fact-title">Education</span>
+                  <span class="fact-val">B.Tech CSE (2nd Year)</span>
+                </div>
+              </div>
+
+              <div class="glass-card fact-card">
+                <i class="fa-solid fa-language fact-icon text-blue"></i>
+                <div class="fact-content">
+                  <span class="fact-title">Languages</span>
+                  <span class="fact-val">Hindi, English</span>
+                </div>
+              </div>
+
+              <div class="glass-card fact-card">
+                <i class="fa-solid fa-gamepad fact-icon text-pink"></i>
+                <div class="fact-content">
+                  <span class="fact-title">Interests</span>
+                  <span class="fact-val">3D Models, AI Backends, Frontend &amp; DSA</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Education Timeline Mini -->
+            <div class="glass-card education-card">
+              <h3 class="card-subtitle"><i class="fa-solid fa-user-graduate"></i> Academic Background</h3>
+              <div class="edu-item">
+                <div class="edu-bullet"></div>
+                <div class="edu-details">
+                  <h4>Bachelor of Technology (B.Tech) in Computer Science &amp; Engineering</h4>
+                  <span class="edu-date">GLA University, Mathura • 2nd Year Student (2024 - 2028)</span>
+                  <p>Specializing in Data Structures &amp; Algorithms (DSA), 3D WebGL graphics modeling, AI backend development, and high-performance frontend web architectures.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="section-padding bg-space-light">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag"><i class="fa-solid fa-microchip"></i> TECH MATRIX</span>
+          <h2 class="section-title">SKILLS &amp; <span class="text-gradient-cyan">CAPABILITIES</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <!-- Category Selector Tabs -->
+        <div class="skills-tabs" id="skills-tabs">
+          <button class="skills-tab-btn active" data-category="all"><i class="fa-solid fa-border-all"></i> All Systems</button>
+          <button class="skills-tab-btn" data-category="frontend"><i class="fa-solid fa-code"></i> Frontend</button>
+          <button class="skills-tab-btn" data-category="backend"><i class="fa-solid fa-server"></i> Backend</button>
+          <button class="skills-tab-btn" data-category="database"><i class="fa-solid fa-database"></i> Database</button>
+          <button class="skills-tab-btn" data-category="programming"><i class="fa-solid fa-terminal"></i> Programming</button>
+          <button class="skills-tab-btn" data-category="tools"><i class="fa-solid fa-screwdriver-wrench"></i> Tools</button>
+        </div>
+
+        <!-- Skills Grid Container -->
+        <div class="skills-grid" id="skills-grid">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="section-padding">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag"><i class="fa-solid fa-timeline"></i> CAREER TRAJECTORY</span>
+          <h2 class="section-title">WORK &amp; <span class="text-gradient-purple">EXPERIENCE</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-line">
+            <div class="timeline-progress-bar" id="timeline-progress"></div>
+          </div>
+
+          <!-- Timeline Item 1: Academic Excellence at GLA University Mathura -->
+          <div class="timeline-item left">
+            <div class="timeline-dot"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="glass-card timeline-content tilt-element">
+              <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2024 - 2025</span>
+              <h3 class="timeline-role">Academic Excellence &amp; High CPI Performance</h3>
+              <span class="timeline-company">GLA University, Mathura</span>
+              <p class="timeline-desc">
+                Achieved an exceptional <strong>8.45 CPI in 1st Semester</strong> and further elevated academic performance to a stellar <strong>9.00 CPI in 2nd Semester</strong> pursuing B.Tech in Computer Science &amp; Engineering.
+              </p>
+              <div class="timeline-tags">
+                <span>8.45 CPI (1st Sem)</span> <span>9.00 CPI (2nd Sem)</span> <span>GLA Mathura</span> <span>B.Tech CSE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2: Completed Frontend in 2025 -->
+          <div class="timeline-item right">
+            <div class="timeline-dot"><i class="fa-solid fa-code"></i></div>
+            <div class="glass-card timeline-content tilt-element">
+              <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2025</span>
+              <h3 class="timeline-role">Frontend Web Engineering &amp; UI Mastery</h3>
+              <span class="timeline-company">Full Stack Web Development</span>
+              <p class="timeline-desc">
+                Completed comprehensive frontend engineering specialization, mastering React.js, Three.js WebGL 3D graphics, GSAP kinetic animation physics, responsive UI design systems, and modern web application state architectures.
+              </p>
+              <div class="timeline-tags">
+                <span>React</span> <span>Three.js</span> <span>WebGL</span> <span>GSAP</span> <span>HTML5/CSS3</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3: Mastery in RC Chip in 2020 -->
+          <div class="timeline-item left">
+            <div class="timeline-dot"><i class="fa-solid fa-microchip"></i></div>
+            <div class="glass-card timeline-content tilt-element">
+              <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2020</span>
+              <h3 class="timeline-role">RC Chip (Remote Control Chip) &amp; Embedded Systems</h3>
+              <span class="timeline-company">Electronics &amp; Hardware Circuitry</span>
+              <p class="timeline-desc">
+                Achieved core technical mastery in Remote Control (RC) chip architecture, RF frequency transmitters/receivers, microcontroller programming, and embedded hardware circuit design.
+              </p>
+              <div class="timeline-tags">
+                <span>RC Chips</span> <span>Embedded Systems</span> <span>RF Modules</span> <span>Microcontrollers</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 4: Mastery in PC Building -->
+          <div class="timeline-item right">
+            <div class="timeline-dot"><i class="fa-solid fa-desktop"></i></div>
+            <div class="glass-card timeline-content tilt-element">
+              <span class="timeline-date"><i class="fa-regular fa-calendar"></i> 2021 - PRESENT</span>
+              <h3 class="timeline-role">High-Performance Custom PC Architecture</h3>
+              <span class="timeline-company">Hardware Assembly &amp; System Optimization</span>
+              <p class="timeline-desc">
+                Deep practical mastery in designing &amp; assembling custom high-end PC builds, component selection, GPU/CPU thermal optimization, BIOS tuning, hardware benchmarking, and hardware diagnostics.
+              </p>
+              <div class="timeline-tags">
+                <span>PC Building</span> <span>Hardware Assembly</span> <span>Thermal Tuning</span> <span>System Diagnostics</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section-padding bg-space-light">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag"><i class="fa-solid fa-rocket"></i> PORTFOLIO MATRIX</span>
+          <h2 class="section-title">FEATURED <span class="text-gradient-cyan">PROJECTS</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="project-filter-bar">
+          <button class="project-filter-btn active" data-filter="all">All Projects</button>
+          <button class="project-filter-btn" data-filter="frontend">Frontend</button>
+          <button class="project-filter-btn" data-filter="backend">Backend</button>
+          <button class="project-filter-btn" data-filter="fullstack">Full Stack</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projects-grid">
+          <!-- Card 1: Full Stack ResumeStudio -->
+          <div class="glass-card project-card tilt-element" data-category="fullstack">
+            <div class="project-img-wrapper">
+              <img src="/assets/project_resumestudio.jpg" alt="ResumeStudio AI Builder" class="project-img">
+              <div class="project-overlay">
+                <a href="https://resumestudio-tvfo7bqy.manus.space" target="_blank" rel="noopener noreferrer" class="btn-overlay-link"><i class="fa-solid fa-eye"></i> Live Demo</a>
+                <a href="https://github.com/keshavg408-del/PORTFOLIO-RESUME-CREATOR" target="_blank" rel="noopener noreferrer" class="btn-overlay-link"><i class="fa-brands fa-github"></i> Code</a>
+              </div>
+              <span class="project-badge">Full Stack</span>
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">ResumeStudio — AI Resume Builder</h3>
+              <p class="project-desc">
+                An intelligent AI-powered full stack resume builder &amp; studio platform featuring real-time document editing, ATS score optimization, smart content suggestions, and instant PDF exports.
+              </p>
+              <div class="project-tech-stack">
+                <span>React</span> <span>Node.js</span> <span>Express</span> <span>AI API</span> <span>Tailwind</span>
+              </div>
+              <div class="project-footer-btns">
+                <a href="https://resumestudio-tvfo7bqy.manus.space" target="_blank" rel="noopener noreferrer" class="btn-card-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                <a href="https://github.com/keshavg408-del/PORTFOLIO-RESUME-CREATOR" target="_blank" rel="noopener noreferrer" class="btn-card-link outline"><i class="fa-brands fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Frontend Senzai Studio -->
+          <div class="glass-card project-card tilt-element" data-category="frontend">
+            <div class="project-img-wrapper">
+              <img src="/assets/project_senzai.jpg" alt="Senzai Digital & Brand Studio" class="project-img">
+              <div class="project-overlay">
+                <a href="https://f1-loat.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-overlay-link"><i class="fa-solid fa-eye"></i> Live Demo</a>
+                <a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer" class="btn-overlay-link"><i class="fa-brands fa-github"></i> Code</a>
+              </div>
+              <span class="project-badge">Frontend 3D</span>
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Senzai — Digital &amp; Brand Studio</h3>
+              <p class="project-desc">
+                An ultra-modern high-end interactive portfolio studio platform featuring custom 3D web graphics, kinetic typography, photography showcase, and smooth inertia physics.
+              </p>
+              <div class="project-tech-stack">
+                <span>React</span> <span>Three.js</span> <span>GSAP</span> <span>Tailwind</span> <span>Framer Motion</span>
+              </div>
+              <div class="project-footer-btns">
+                <a href="https://f1-loat.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-card-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                <a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer" class="btn-card-link outline"><i class="fa-brands fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card project-card tilt-element" data-category="backend">
+            <div class="project-img-wrapper">
+              <img src="/assets/project_nebula.jpg" alt="Nebula Encrypted Cloud" class="project-img">
+              <div class="project-overlay">
+                <a href="https://github.com/keshavg408-del/nebula-zero-cloud" target="_blank" rel="noopener noreferrer" class="btn-overlay-link"><i class="fa-solid fa-eye"></i> Live Demo</a>
+                <a href="https://github.com/keshavg408-del/nebula-zero-cloud" target="_blank" rel="noopener noreferrer" class="btn-overlay-link"><i class="fa-brands fa-github"></i> Code</a>
+              </div>
+              <span class="project-badge">Backend &amp; Security</span>
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">Nebula Zero-Knowledge Cloud Engine</h3>
+              <p class="project-desc">
+                High-performance distributed cloud file vault with end-to-end AES-256 encryption, chunked stream uploads, and multi-node replication APIs.
+              </p>
+              <div class="project-tech-stack">
+                <span>Node.js</span> <span>Express</span> <span>MySQL</span> <span>Docker</span> <span>C++ Core</span>
+              </div>
+              <div class="project-footer-btns">
+                <a href="https://github.com/keshavg408-del/nebula-zero-cloud" target="_blank" rel="noopener noreferrer" class="btn-card-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                <a href="https://github.com/keshavg408-del/nebula-zero-cloud" target="_blank" rel="noopener noreferrer" class="btn-card-link outline"><i class="fa-brands fa-github"></i> GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GITHUB & LINKEDIN LIVE PREVIEWS HUB -->
+    <section id="github" class="section-padding">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-tag"><i class="fa-brands fa-github"></i> OPEN SOURCE &amp; SOCIAL PREVIEWS</span>
+          <h2 class="section-title">COMMAND CENTER <span class="text-gradient-purple">&amp; PROFILES</span></h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Live interactive profile cards for GitHub &amp; LinkedIn</p>
+        </div>
+
+        <!-- PROFILE PREVIEW CARDS ROW (GITHUB + LINKEDIN) -->
+        <div class="profile-previews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.8rem; margin-bottom: 2.5rem;">
+          
+          <!-- GitHub Live Profile Card -->
+          <div class="glass-card github-profile-card tilt-element" style="margin-bottom:0;">
+            <div class="gh-profile-header" style="margin-bottom: 1.2rem;">
+              <div class="gh-user-wrap">
+                <a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer" class="gh-avatar-container" title="Open Keshav's GitHub Profile">
+                  <img src="/assets/profile_avatar.jpg" alt="Keshav Gupta Avatar" class="gh-avatar">
+                  <span class="gh-status-badge"><i class="fa-solid fa-check"></i> PRO</span>
+                </a>
+                <div class="gh-user-details">
+                  <h3 class="gh-display-name">
+                    <a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">Keshav Gupta</a>
+                  </h3>
+                  <a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer" class="gh-username">@keshavg408-del</a>
+                  <p class="gh-bio">Building cosmic open-source web technologies &amp; high-performance WebGL shaders.</p>
+                </div>
+              </div>
+            </div>
+            
+            <a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer" class="btn-neon btn-primary btn-block">
+              <i class="fa-brands fa-github"></i> View GitHub Profile <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+
+          <!-- LinkedIn Professional Live Profile Card -->
+          <div class="glass-card linkedin-profile-card tilt-element">
+            <div class="gh-profile-header" style="margin-bottom: 1.2rem;">
+              <div class="gh-user-wrap">
+                <a href="https://www.linkedin.com/in/keshav-gupta-310847306/" target="_blank" rel="noopener noreferrer" class="gh-avatar-container" style="background: linear-gradient(135deg, #0077b5, #00f5d4);" title="Open Keshav's LinkedIn Profile">
+                  <img src="/assets/profile_avatar.jpg" alt="Keshav Gupta LinkedIn" class="gh-avatar">
+                  <span class="gh-status-badge" style="background: #0077b5;"><i class="fa-brands fa-linkedin-in"></i></span>
+                </a>
+                <div class="gh-user-details">
+                  <h3 class="gh-display-name">
+                    <a href="https://www.linkedin.com/in/keshav-gupta-310847306/" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:none;">Keshav Gupta</a>
+                  </h3>
+                  <span class="gh-username" style="color: #0077b5;">linkedin.com/in/keshav-gupta-310847306</span>
+                  <p class="gh-bio">3D Web Architect • Lead Full Stack Developer • Open to Global Roles</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="https://www.linkedin.com/in/keshav-gupta-310847306/" target="_blank" rel="noopener noreferrer" class="btn-neon btn-secondary btn-block">
+              <i class="fa-brands fa-linkedin-in"></i> View LinkedIn Profile <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Futuristic Stats Counter Grid -->
+        <div class="glass-card" style="margin-bottom: 2.5rem;">
+          <div class="gh-stats-counter-grid">
+            <div class="gh-stat-box">
+              <div class="gh-stat-icon text-cyan"><i class="fa-solid fa-box-archive"></i></div>
+              <div class="gh-stat-data">
+                <span class="gh-num counter" data-target="52">0</span>
+                <span class="gh-label">Repositories</span>
+              </div>
+            </div>
+
+            <div class="gh-stat-box">
+              <div class="gh-stat-icon text-yellow"><i class="fa-solid fa-star"></i></div>
+              <div class="gh-stat-data">
+                <span class="gh-num counter" data-target="1840">0</span>
+                <span class="gh-label">Total Stars</span>
+              </div>
+            </div>
+
+            <div class="gh-stat-box">
+              <div class="gh-stat-icon text-purple"><i class="fa-solid fa-users"></i></div>
+              <div class="gh-stat-data">
+                <span class="gh-num counter" data-target="2450">0</span>
+                <span class="gh-label">Followers</span>
+              </div>
+            </div>
+
+            <div class="gh-stat-box">
+              <div class="gh-stat-icon text-pink"><i class="fa-solid fa-code-commit"></i></div>
+              <div class="gh-stat-data">
+                <span class="gh-num counter" data-target="50">0</span>
+                <span class="gh-label">Commits 2026</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Official GitHub Contribution Graph Container -->
+        <div class="glass-card github-contribution-box">
+          <div class="gh-contrib-header">
+            <h4><i class="fa-solid fa-calendar-days"></i> Official Contribution Matrix (Last 1 Year)</h4>
+            <span class="contrib-total-badge">50 Contributions</span>
+          </div>
+
+          <!-- SVG/Canvas Grid rendered by github-stats.js preserving exact official grid format -->
+          <div class="contrib-graph-grid-wrapper" id="github-contrib-graph"></div>
+
+          <div class="contrib-legend">
+            <span>Less</span>
+            <div class="legend-cell level-0"></div>
+            <div class="legend-cell level-1"></div>
+            <div class="legend-cell level-2"></div>
+            <div class="legend-cell level-3"></div>
+            <div class="legend-cell level-4"></div>
+            <span>More</span>
+          </div>
+        </div>
+
+        <!-- Showcase Repositories Grid -->
+        <div class="gh-repos-section">
+          <h3 class="subheading"><i class="fa-solid fa-code-fork"></i> Top Featured Repositories</h3>
+          <div class="gh-repos-grid" id="gh-repos-container">
+            <!-- Rendered by github-stats.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & ACHIEVEMENTS SECTION -->
+    <section id="certifications" class="section-padding bg-space-light">
+      <div class="container">
+        <!-- Achievements Counters Row -->
+        <div class="achievements-bar glass-card">
+          <div class="achieve-item">
+            <i class="fa-solid fa-diagram-project achieve-icon text-cyan"></i>
+            <div class="achieve-text">
+              <span class="achieve-num counter" data-target="50">0</span><span class="plus">+</span>
+              <span class="achieve-title">Projects Completed</span>
+            </div>
+          </div>
+
+          <div class="achieve-item">
+            <i class="fa-brands fa-git-alt achieve-icon text-purple"></i>
+            <div class="achieve-text">
+              <span class="achieve-num counter" data-target="52">0</span>
+              <span class="achieve-title">GitHub Repos</span>
+            </div>
+          </div>
+
+          <div class="achieve-item">
+            <i class="fa-solid fa-code achieve-icon text-yellow"></i>
+            <div class="achieve-text">
+              <span class="achieve-num counter" data-target="67">0</span>
+              <span class="achieve-title">LeetCode / Problems</span>
+            </div>
+          </div>
+
+          <div class="achieve-item">
+            <i class="fa-solid fa-award achieve-icon text-pink"></i>
+            <div class="achieve-text">
+              <span class="achieve-num counter" data-target="1">0</span>
+              <span class="achieve-title">Certifications</span>
+            </div>
+          </div>
+
+          <div class="achieve-item">
+            <i class="fa-solid fa-hourglass-half achieve-icon text-blue"></i>
+            <div class="achieve-text">
+              <span class="achieve-num counter" data-target="1">0</span><span class="plus">+</span>
+              <span class="achieve-title">Years Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-header center">
+          <span class="section-tag"><i class="fa-solid fa-certificate"></i> CREDENTIALS</span>
+          <h2 class="section-title">CERTIFICATIONS &amp; <span class="text-gradient-purple">ACCREDITATION</span></h2>
+          <div class="title-underline"></div>
+        </div>
+
+        <div class="certs-grid" style="grid-template-columns: minmax(320px, 680px); justify-content: center;">
+          <!-- Microsoft Certified: Azure Fundamentals Card -->
+          <div class="glass-card cert-card tilt-element" style="display: flex; flex-direction: column; gap: 1.2rem; padding: 1.8rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <div class="cert-icon-wrapper text-cyan" style="font-size: 2.4rem;">
+                  <i class="fa-brands fa-microsoft"></i>
+                </div>
+                <div>
+                  <h3 style="font-size: 1.35rem; margin-bottom: 0.2rem;">Microsoft Certified: Azure Fundamentals</h3>
+                  <span class="cert-issuer" style="color: var(--accent-cyan); font-weight: 700;">Microsoft</span>
+                </div>
+              </div>
+              <span class="cert-date" style="background: rgba(0,245,212,0.1); border: 1px solid var(--accent-cyan); padding: 0.3rem 0.8rem; border-radius: 20px; color: var(--accent-cyan); font-family: var(--font-code); font-size: 0.8rem;">
+                <i class="fa-regular fa-calendar-check"></i> May 18, 2026
+              </span>
+            </div>
+
+            <!-- Certificate Image Preview -->
+            <div class="project-img-wrapper" style="height: 280px; border-radius: 16px; border: 1px solid var(--border-glass); overflow: hidden;">
+              <img src="/assets/cert_azure.jpg" alt="Microsoft Certified Azure Fundamentals - Keshav Gupta" class="project-img" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <div class="cert-body" style="padding: 0;">
+              <p style="margin-bottom: 1.2rem; font-size: 0.95rem; color: var(--text-muted);">
+                Official Microsoft certification verifying foundational knowledge of cloud concepts, Microsoft Azure core services, security, privacy, compliance, and cloud governance.
+              </p>
+              
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+                <span style="font-family: var(--font-code); font-size: 0.85rem; color: var(--accent-yellow);">
+                  <i class="fa-solid fa-shield-halved"></i> Verification Code: <strong>w6GDC-48EN</strong>
+                </span>
+                <a href="https://verify.certiport.com" target="_blank" rel="noopener noreferrer" class="btn-neon btn-primary btn-sm">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Verify on Certiport
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION WITH INTEGRATED SPLINE 3D MODEL -->
+    <section id="contact" class="section-padding contact-full-section">
+      <!-- FULL-BLEED SPLINE 3D BACKGROUND COVERING ENTIRE CONTACT SECTION -->
+      <div class="contact-spline-bg">
+        <spline-viewer loading="lazy" url="https://prod.spline.design/PfzCkp7GXQwfYmSc/scene.splinecode"></spline-viewer>
+        <div class="spline-overlay-gradient"></div>
+      </div>
+
+      <div class="container contact-content-layer">
+        <div class="section-header center">
+          <span class="section-tag"><i class="fa-solid fa-paper-plane"></i> TRANSMIT MESSAGE</span>
+          <h2 class="section-title">GET IN <span class="text-gradient-cyan">TOUCH</span></h2>
+          <div class="title-underline"></div>
+          <p class="section-subtitle">Have a project, job opportunity, or space query? Send a transmission!</p>
+        </div>
+
+        <div class="contact-form-glass-card">
+          <form id="contact-form" class="contact-form">
+            <div class="form-group">
+              <label for="contact-name"><i class="fa-solid fa-user"></i> Full Name</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="e.g. Commander Shepard" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="shepard@normandy.space" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-phone"><i class="fa-solid fa-phone"></i> Phone Number</label>
+                <input type="tel" id="contact-phone" class="form-input" placeholder="+1 (555) 019-2831">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject"><i class="fa-solid fa-tag"></i> Subject</label>
+              <input type="text" id="contact-subject" class="form-input" placeholder="Project Inquiry / Job Offer" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message"><i class="fa-solid fa-comment-dots"></i> Transmission Content</label>
+              <textarea id="contact-message" class="form-input form-textarea" rows="4" placeholder="Detail your project specifications or query..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn-neon btn-primary btn-block" id="submit-btn">
+              <i class="fa-solid fa-paper-plane"></i> Send Transmission
+            </button>
+          </form>
+
+          <div class="contact-direct-socials">
+            <span class="socials-label">DIRECT COMMS LINKS:</span>
+            <div class="social-icons">
+              <a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              <a href="https://www.linkedin.com/in/keshav-gupta-310847306/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="mailto:keshavg408@gmail.com" aria-label="Gmail"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ANIMATED GALACTIC FOOTER -->
+  <footer id="footer">
+    <div class="footer-glow-line"></div>
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="footer-logo">
+            <span class="logo-bracket">&lt;</span>KESHAV<span class="logo-accent"> / GUPTA</span><span class="logo-bracket">&gt;</span>
+          </a>
+          <p class="footer-desc">
+            Designing award-winning WebGL space visuals and full-stack software applications for the next generation of the web.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#github">GitHub</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Intel &amp; Profiles</h4>
+          <ul>
+            <li><a href="https://github.com/keshavg408-del" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub Profile</a></li>
+            <li><a href="https://www.linkedin.com/in/keshav-gupta-310847306/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i> LinkedIn Profile</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact-info">
+          <h4>Transmission Hub</h4>
+          <p><i class="fa-solid fa-envelope text-cyan"></i> keshavg408@gmail.com</p>
+          <p><i class="fa-solid fa-phone text-purple"></i> +1 (555) 019-2831</p>
+          <p><i class="fa-solid fa-location-dot text-pink"></i> Jhansi, UP, India</p>
+          <button id="footer-resume-btn" class="btn-neon btn-sm mt-3">
+            <i class="fa-solid fa-file-arrow-down"></i> Keshav Resume PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Keshav Gupta. All Rights Reserved. Crafted in Deep Space.</p>
+        <a href="#hero" class="back-to-top-btn" aria-label="Back to Top">
+          <i class="fa-solid fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Vite Scripts -->
+</body>
+</html>
